@@ -1,9 +1,9 @@
 module.exports = calcHistory = [
   {
-    firstNumber: "3",
-    operand: "-",
-    secondNumber: "1",
-    answer: "2"
+    firstNumber: "8",
+    operand: "*",
+    secondNumber: "4",
+    answer: "32"
   },
   {
     firstNumber: "1",
