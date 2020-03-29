@@ -8,6 +8,7 @@ function init() {
   $(".submit-equals-btn").on("click", submitInputForms);
 }
 
-function submitInputForms() {
+function submitInputForms(event) {
+  event.preventDefault();
   console.log("You clicked the = button");
 }
