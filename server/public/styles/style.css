@@ -1,5 +1,5 @@
 body {
-  background: url("images/calculations.jpeg");
+  background: url("../images/calculations.jpeg");
 }
 
 h1 {
@@ -8,6 +8,7 @@ h1 {
 
 .btn {
   font-family: monospace;
+  display: inline;
 }
 
 .js-calculator-div {
@@ -17,6 +18,13 @@ h1 {
 .div-calc-history {
   background: beige;
   font-family: monospace;
+}
+
+.calc-input-one {
+  border: 2px;
+  height: 12px;
+  width: 20px;
+  color: gray;
 }
 
 .calc-output {
