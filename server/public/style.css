@@ -6,7 +6,7 @@ h1 {
   font-family: monospace;
 }
 
-btn {
+.btn {
   font-family: monospace;
 }
 
@@ -21,4 +21,5 @@ btn {
 
 .calc-output {
   margin: 20px;
+  font-family: monospace;
 }

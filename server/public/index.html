@@ -4,38 +4,36 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Server Side Calculator</title>
-    <!-- <script src="vendors/jQuery.js" type="text/javascript"></script>
-    <script src="client/client.js" type="text/javascript"></script> -->
-    <link href="style.css" rel="stylesheet" type = "text/css"/>
-    <img rel="images/calculations.jpeg"/>
+    <script src="/vendors/jQuery.js" type="text/javascript"></script>
+    <script src="/client/client.js" type="text/javascript"></script>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <img rel="images/calculations.jpeg" />
   </head>
   <body>
     <h1>Server Side Calculator</h1>
 
     <div class="js-calculator-div">
-      <input class="calc-input-one"></form>
+      <form input class="calc-input-one" placeholder="enter number"></form>
 
-      <button class = "btn">+</button>
-      <button class = "btn">-</button>
-      <button class = "btn">*</button>
-      <button class = "btn">/</button>
-      <button class = "btn">=</button>
+      <button data="operand" class="btn js-add">+</button>
+      <button data="operand" class="btn js-subtract">-</button>
+      <button data="operand" class="btn js-multiply">*</button>
+      <button data="operand" class="btn js-divide">/</button>
 
-      <input class="calc-input-two"></form>
+      <form input class="calc-input-two" placeholder="enter number"></form>
+      <button class="btn submit-equals-btn">=</button>
 
       <button class="clear btn">Clear</button>
 
-      <div class ="calc-output">
+      <div class="calc-output">
         <span>0</span>
       </div>
-
     </div>
 
-    <div class = "div-calc-history">
-      <ul class = "ul-calc-history">
+    <div class="div-calc-history">
+      <ul class="ul-calc-history">
         <li>12 - 4 = 8</li>
       </ul>
     </div>
-
   </body>
 </html>
