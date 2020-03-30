@@ -2,15 +2,15 @@ $(document).ready(init);
 
 let calcHistory = [];
 let newCalculation = {};
-let recentOperand = "";
+let recentOperation = "";
 
 function init() {
   console.log("DOM is connected");
   $(".submit-equals-btn").on("click", clickAddCalc);
-  $(".js-add").on("click", clickAdditionOperand);
-  $(".js-subtract").on("click", clickSubtractionOperand);
-  $(".js-divide").on("click", clickDivisionOperand);
-  $(".js-multiply").on("click", clickMultiplicationOperand);
+  $(".js-add").on("click", clickAdditionOperation);
+  $(".js-subtract").on("click", clickSubtractionOperation);
+  $(".js-divide").on("click", clickDivisionOperation);
+  $(".js-multiply").on("click", clickMultiplicationOperation);
 
   getCalculations();
 }
@@ -22,9 +22,9 @@ function clickAddCalc(event) {
   console.log("You clicked the = button");
   //update the newCalculation object
   const newCalculation = {
-    //we have the form values and we still need operand and answer values
+    //we have the form values and we still need operation and answer values
     firstNumber: $(".js-calc-input-one").val(),
-    operand: recentOperand,
+    operation: recentOperation,
     secondNumber: $(".js-calc-input-two").val()
     //answer: calculateThis() --> I might want calculations to happen server side after the data on the object is passed over to the server
   };
@@ -68,29 +68,29 @@ function getCalculations() {
     });
 }
 
-//functions that reassign the global variable recentOperand based on which button is clicked
-function clickAdditionOperand(event) {
+//functions that reassign the global variable recentOperation based on which button is clicked
+function clickAdditionOperation(event) {
   event.preventDefault();
-  recentOperand = "add";
-  console.log(recentOperand);
+  recentOperation = "add";
+  console.log(recentOperation);
 }
 
-function clickSubtractionOperand(event) {
+function clickSubtractionOperation(event) {
   event.preventDefault();
-  recentOperand = "subtract";
-  console.log(recentOperand);
+  recentOperation = "subtract";
+  console.log(recentOperation);
 }
 
-function clickMultiplicationOperand(event) {
+function clickMultiplicationOperation(event) {
   event.preventDefault();
-  recentOperand = "multiply";
-  console.log(recentOperand);
+  recentOperation = "multiply";
+  console.log(recentOperation);
 }
 
-function clickDivisionOperand(event) {
+function clickDivisionOperation(event) {
   event.preventDefault();
-  recentOperand = "divide";
-  console.log(recentOperand);
+  recentOperation = "divide";
+  console.log(recentOperation);
 }
 
 //render calcHistory to DOM
@@ -102,7 +102,7 @@ function render(calcHistory) {
     const calculationObject = calcHistory[i];
 
     $(".div-calc-history").append(`
-      <li>${calculationObject.firstNumber} ${calculationObject.operand} ${calculationObject.secondNumber} = ${calculationObject.answer} </li>
+      <li>${calculationObject.firstNumber} ${calculationObject.operation} ${calculationObject.secondNumber} = ${calculationObject.answer} </li>
     `);
   }
 }

@@ -19,21 +19,21 @@ app.post("/calcHistory", (req, res) => {
   //this post route is using the data received and returning it cleaned up, converted from strings into numbers
   const newCalculation = {
     firstNumber: parseFloat(req.body.firstNumber),
-    operand: req.body.recentOperand,
+    operation: req.body.recentOperation,
     secondNumber: parseFloat(req.body.secondNumber)
   };
   //calculate answer within the server side post
 
-  if (newCalculation.recentOperand === "add") {
+  if (newCalculation.recentOperation === "add") {
     newCalculation.answer = firstNumber + secondNumber;
   }
-  else if (newCalculation.recentOperand === "subtract") {
+  else if (newCalculation.recentOperation === "subtract") {
     newCalculation.answer = firstNumber - secondNumber;
   }
-  else if (newCalculation.recentOperand === "multiply") {
+  else if (newCalculation.recentOperation === "multiply") {
     newCalculation.answer = firstNumber * secondNumber;
   }
-  else if (newCalculation.recentOperand === "divide") {
+  else if (newCalculation.recentOperation === "divide") {
     newCalculation.answer = firstNumber / secondNumber;
   }
   console.log(newCalculation);
