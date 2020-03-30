@@ -2,6 +2,7 @@ $(document).ready(init);
 
 let calcHistory = [];
 let newCalculation = {};
+let recentOperand = "+";
 
 function init() {
   console.log("DOM is connected");
@@ -14,47 +15,49 @@ function init() {
   getCalculations();
 }
 
-function clickAdditionOperand(event) {
-  event.preventDefault();
-  console.log("You clicked +");
-  newCalculation.operand = $(".js-add").val();
-}
-
-function clickSubtractionOperand(event) {
-  event.preventDefault();
-  console.log("You clicked -");
-  newCalculation.operand = $(".js-subtract").val();
-}
-
-function clickMultiplicationOperand(event) {
-  event.preventDefault();
-  console.log("You clicked *");
-  newCalculation.operand = $(".js-multiply").val();
-}
-
-function clickDivisionOperand(event) {
-  event.preventDefault();
-  console.log("You clicked /");
-  newCalculation.operand = $(".js-divide").val();
-}
-
+//on click of = the below function submits the two input values (js-calc-input-one and js-calc-input-two) and stores them as values within newCalculation object
 function clickAddCalc(event) {
   //save newCalculation to the server
   event.preventDefault();
   console.log("You clicked the = button");
-  //   const newCalculation = {
-  //     //we have the form values and we still need operand and answer values
-  //     firstNumber: $(".js-calc-input-one").val,
-  //     operand: "",
-  //     secondNumber: $(".js-calc-input-two").val,
-  //     answer: ""
-  //   };
-  //   saveCalculation(newCalculation);
+  //update the newCalculation object
+  const newCalculation = {
+    //we have the form values and we still need operand and answer values
+    firstNumber: $(".js-calc-input-one").val,
+    operand: recentOperand,
+    secondNumber: $(".js-calc-input-two").val
+    //answer: ""
+  };
+  saveCalculation(newCalculation);
 
-  //   //clearing form fields
-  //   $(".js-calc-input-one").val("");
+  //clearing form fields
+  $(".js-calc-input-one").val("");
 
-  //   $(".js-calc-input-two").val("");
+  $(".js-calc-input-two").val("");
+}
+
+function clickAdditionOperand(event) {
+  event.preventDefault();
+  recentOperand = "+";
+  console.log(recentOperand);
+}
+
+function clickSubtractionOperand(event) {
+  event.preventDefault();
+  recentOperand = "-";
+  console.log(recentOperand);
+}
+
+function clickMultiplicationOperand(event) {
+  event.preventDefault();
+  recentOperand = "*";
+  console.log(recentOperand);
+}
+
+function clickDivisionOperand(event) {
+  event.preventDefault();
+  recentOperand = "/";
+  console.log(recentOperand);
 }
 
 function getCalculations() {
