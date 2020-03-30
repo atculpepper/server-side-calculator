@@ -15,6 +15,24 @@ function init() {
   getCalculations();
 }
 
+//calculator function
+function calculateThis(newCalculation) {
+  let firstNumber = parseFloat(newCalculation.firstNumber);
+  let secondNumber = parseFloat(newCalculation.secondNumber);
+  if (recentOperand === "+") {
+    return firstNumber + secondNumber;
+  }
+  if (recentOperand === "-") {
+    return firstNumber - secondNumber;
+  }
+  if (recentOperand === "*") {
+    return firstNumber * secondNumber;
+  }
+  if (recentOperand === "/") {
+    return firstNumber / secondNumber;
+  }
+}
+
 //on click of = the below function submits the two input values (js-calc-input-one and js-calc-input-two) and stores them as values within newCalculation object
 function clickAddCalc(event) {
   //save newCalculation to the server
@@ -26,7 +44,7 @@ function clickAddCalc(event) {
     firstNumber: $(".js-calc-input-one").val,
     operand: recentOperand,
     secondNumber: $(".js-calc-input-two").val
-    //answer: ""
+    answer: calculateThis(newCalculation)
   };
 
   //save the newCalculation object to the server by passing it into the saveCalculation function
@@ -102,7 +120,7 @@ function render(calcHistory) {
     const calculationObject = calcHistory[i];
 
     $(".div-calc-history").append(`
-      <li>${calculationObject.firstNumber} ${calculationObject.operand} ${calculationObject.secondNumber} = $</li>
+      <li>${calculationObject.firstNumber} ${calculationObject.operand} ${calculationObject.secondNumber} = ${calculationObject.answer} </li>
     `);
   }
 }
