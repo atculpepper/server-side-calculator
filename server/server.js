@@ -1,7 +1,19 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const calcHistory = require("./calcHistory");
-
+let calcHistory = [
+  {
+    firstNumber: "8",
+    operation: "*",
+    secondNumber: "4",
+    answer: "32"
+  },
+  {
+    firstNumber: "1",
+    operation: "+",
+    secondNumber: "1",
+    answer: "2"
+  }
+];
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -10,12 +22,12 @@ app.use(bodyParser.json());
 
 app.use(express.static("server/public"));
 
-app.get("/calcHistory", (req, res) => {
+app.get("/calculation", (req, res) => {
   res.send(calcHistory);
   console.log(calcHistory);
 });
 
-app.post("/calcHistory", (req, res) => {
+app.post("/calculation", (req, res) => {
   //this post route is using the data received and returning it cleaned up, converted from strings into numbers
   const newCalculation = {
     firstNumber: parseFloat(req.body.firstNumber),
@@ -26,20 +38,14 @@ app.post("/calcHistory", (req, res) => {
 
   if (newCalculation.recentOperation === "add") {
     newCalculation.answer = firstNumber + secondNumber;
-  }
-  else if (newCalculation.recentOperation === "subtract") {
+  } else if (newCalculation.recentOperation === "subtract") {
     newCalculation.answer = firstNumber - secondNumber;
-  }
-  else if (newCalculation.recentOperation === "multiply") {
+  } else if (newCalculation.recentOperation === "multiply") {
     newCalculation.answer = firstNumber * secondNumber;
-  }
-  else if (newCalculation.recentOperation === "divide") {
+  } else if (newCalculation.recentOperation === "divide") {
     newCalculation.answer = firstNumber / secondNumber;
   }
   console.log(newCalculation);
-
-}
-
 
   console.log(newCalculation);
   res.send(200);

@@ -17,7 +17,7 @@ function init() {
 
 //on click of = the below function submits the two input values (js-calc-input-one and js-calc-input-two) and stores them as values within newCalculation object
 function clickAddCalc(event) {
-  //save newCalculation to the server
+  //need to save this newCalculation to the server
   event.preventDefault();
   console.log("You clicked the = button");
   //update the newCalculation object
@@ -42,7 +42,7 @@ function clickAddCalc(event) {
 function saveCalculation(newCalculation) {
   $.ajax({
     method: "POST",
-    url: "/calcHistory",
+    url: "/calculation",
     data: newCalculation
   })
     .then(response => {
@@ -58,7 +58,7 @@ function getCalculations() {
   //AJAX request to server for calcHistory
   $.ajax({
     method: "GET",
-    url: "/calcHistory"
+    url: "/calculation"
   })
     .then(response => {
       render(response);
