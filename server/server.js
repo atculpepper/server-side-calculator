@@ -16,7 +16,33 @@ app.get("/calcHistory", (req, res) => {
 });
 
 app.post("/calcHistory", (req, res) => {
-  const newCalculation = req.body;
+  //this post route is using the data received and returning it cleaned up, converted from strings into numbers
+  const newCalculation = {
+    firstNumber: parseFloat(req.body.firstNumber),
+    operand: req.body.recentOperand,
+    secondNumber: parseFloat(req.body.secondNumber)
+  };
+  //calculate answer within the server side post
+
+  if (newCalculation.recentOperand === "add") {
+    newCalculation.answer = firstNumber + secondNumber;
+  }
+  else if (newCalculation.recentOperand === "subtract") {
+    newCalculation.answer = firstNumber - secondNumber;
+  }
+  else if (newCalculation.recentOperand === "multiply") {
+    newCalculation.answer = firstNumber * secondNumber;
+  }
+  else if (newCalculation.recentOperand === "divide") {
+    newCalculation.answer = firstNumber / secondNumber;
+  }
+  console.log(newCalculation);
+
+}
+
+
+  console.log(newCalculation);
+  res.send(200);
 
   calcHistory.push(newCalculation);
 

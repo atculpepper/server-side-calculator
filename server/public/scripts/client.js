@@ -2,7 +2,7 @@ $(document).ready(init);
 
 let calcHistory = [];
 let newCalculation = {};
-let recentOperand = "+";
+let recentOperand = "";
 
 function init() {
   console.log("DOM is connected");
@@ -15,24 +15,6 @@ function init() {
   getCalculations();
 }
 
-//calculator function
-function calculateThis(firstNumber, secondNumber) {
-  firstNumber = parseFloat(newCalculation.firstNumber);
-  secondNumber = parseFloat(newCalculation.secondNumber);
-  if (recentOperand === "+") {
-    return firstNumber + secondNumber;
-  }
-  if (recentOperand === "-") {
-    return firstNumber - secondNumber;
-  }
-  if (recentOperand === "*") {
-    return firstNumber * secondNumber;
-  }
-  if (recentOperand === "/") {
-    return firstNumber / secondNumber;
-  }
-}
-
 //on click of = the below function submits the two input values (js-calc-input-one and js-calc-input-two) and stores them as values within newCalculation object
 function clickAddCalc(event) {
   //save newCalculation to the server
@@ -43,8 +25,8 @@ function clickAddCalc(event) {
     //we have the form values and we still need operand and answer values
     firstNumber: $(".js-calc-input-one").val(),
     operand: recentOperand,
-    secondNumber: $(".js-calc-input-two").val(),
-    answer: calculateThis()
+    secondNumber: $(".js-calc-input-two").val()
+    //answer: calculateThis() --> I might want calculations to happen server side after the data on the object is passed over to the server
   };
 
   //save the newCalculation object to the server by passing it into the saveCalculation function
@@ -54,45 +36,6 @@ function clickAddCalc(event) {
   $(".js-calc-input-one").val("");
 
   $(".js-calc-input-two").val("");
-}
-
-//functions that reassign the global variable recentOperand based on which button is clicked
-function clickAdditionOperand(event) {
-  event.preventDefault();
-  recentOperand = "+";
-  console.log(recentOperand);
-}
-
-function clickSubtractionOperand(event) {
-  event.preventDefault();
-  recentOperand = "-";
-  console.log(recentOperand);
-}
-
-function clickMultiplicationOperand(event) {
-  event.preventDefault();
-  recentOperand = "*";
-  console.log(recentOperand);
-}
-
-function clickDivisionOperand(event) {
-  event.preventDefault();
-  recentOperand = "/";
-  console.log(recentOperand);
-}
-
-function getCalculations() {
-  //AJAX request to server for calcHistory
-  $.ajax({
-    method: "GET",
-    url: "/calcHistory"
-  })
-    .then(response => {
-      render(response);
-    })
-    .catch(err => {
-      console.log("error finding the old calculations");
-    });
 }
 
 //AJAX save newCalculation to server
@@ -109,6 +52,45 @@ function saveCalculation(newCalculation) {
     .catch(err => {
       console.log("error saving newCalculation");
     });
+}
+
+function getCalculations() {
+  //AJAX request to server for calcHistory
+  $.ajax({
+    method: "GET",
+    url: "/calcHistory"
+  })
+    .then(response => {
+      render(response);
+    })
+    .catch(err => {
+      console.log("error finding the old calculations");
+    });
+}
+
+//functions that reassign the global variable recentOperand based on which button is clicked
+function clickAdditionOperand(event) {
+  event.preventDefault();
+  recentOperand = "add";
+  console.log(recentOperand);
+}
+
+function clickSubtractionOperand(event) {
+  event.preventDefault();
+  recentOperand = "subtract";
+  console.log(recentOperand);
+}
+
+function clickMultiplicationOperand(event) {
+  event.preventDefault();
+  recentOperand = "multiply";
+  console.log(recentOperand);
+}
+
+function clickDivisionOperand(event) {
+  event.preventDefault();
+  recentOperand = "divide";
+  console.log(recentOperand);
 }
 
 //render calcHistory to DOM
