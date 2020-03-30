@@ -16,9 +16,9 @@ function init() {
 }
 
 //calculator function
-function calculateThis(newCalculation) {
-  let firstNumber = parseFloat(newCalculation.firstNumber);
-  let secondNumber = parseFloat(newCalculation.secondNumber);
+function calculateThis(firstNumber, secondNumber) {
+  firstNumber = parseFloat(newCalculation.firstNumber);
+  secondNumber = parseFloat(newCalculation.secondNumber);
   if (recentOperand === "+") {
     return firstNumber + secondNumber;
   }
@@ -44,7 +44,7 @@ function clickAddCalc(event) {
     firstNumber: $(".js-calc-input-one").val(),
     operand: recentOperand,
     secondNumber: $(".js-calc-input-two").val(),
-    answer: calculateThis(newCalculation)
+    answer: calculateThis()
   };
 
   //save the newCalculation object to the server by passing it into the saveCalculation function
