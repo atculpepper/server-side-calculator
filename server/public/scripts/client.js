@@ -41,9 +41,9 @@ function clickAddCalc(event) {
   //update the newCalculation object
   const newCalculation = {
     //we have the form values and we still need operand and answer values
-    firstNumber: $(".js-calc-input-one").val,
+    firstNumber: $(".js-calc-input-one").val(),
     operand: recentOperand,
-    secondNumber: $(".js-calc-input-two").val
+    secondNumber: $(".js-calc-input-two").val(),
     answer: calculateThis(newCalculation)
   };
 
