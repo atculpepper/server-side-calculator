@@ -28,6 +28,8 @@ function clickAddCalc(event) {
     secondNumber: $(".js-calc-input-two").val
     //answer: ""
   };
+
+  //save the newCalculation object to the server by passing it into the saveCalculation function
   saveCalculation(newCalculation);
 
   //clearing form fields
@@ -36,6 +38,7 @@ function clickAddCalc(event) {
   $(".js-calc-input-two").val("");
 }
 
+//functions that reassign the global variable recentOperand based on which button is clicked
 function clickAdditionOperand(event) {
   event.preventDefault();
   recentOperand = "+";
@@ -70,7 +73,7 @@ function getCalculations() {
       render(response);
     })
     .catch(err => {
-      console.log("error");
+      console.log("error finding the old calculations");
     });
 }
 
@@ -82,7 +85,8 @@ function saveCalculation(newCalculation) {
     data: newCalculation
   })
     .then(response => {
-      console.log("response");
+      console.log(response);
+      getCalculations();
     })
     .catch(err => {
       console.log("error saving newCalculation");
@@ -95,10 +99,10 @@ function render(calcHistory) {
   console.log("Render calcHistory");
   $(".div-calc-history").empty();
   for (let i = 0; i < calcHistory.length; i++) {
-    const newCalculation = calcHistory[i];
+    const calculationObject = calcHistory[i];
 
     $(".div-calc-history").append(`
-      <li>${newCalculation.firstNumber} ${newCalculation.operand} ${newCalculation.secondNumber} = ${newCalculation.answer}</li>
+      <li>${calculationObject.firstNumber} ${calculationObject.operand} ${calculationObject.secondNumber} = $</li>
     `);
   }
 }
