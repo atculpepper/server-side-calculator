@@ -37,13 +37,13 @@ app.post("/calculation", (req, res) => {
   };
   //calculate answer within the server side post
 
-  if (newCalculation.recentOperation === "add") {
+  if (newCalculation.operation === "add") {
     newCalculation.answer = firstNumber + secondNumber;
-  } else if (newCalculation.recentOperation === "subtract") {
+  } else if (newCalculation.operation === "subtract") {
     newCalculation.answer = firstNumber - secondNumber;
-  } else if (newCalculation.recentOperation === "multiply") {
+  } else if (newCalculation.operation === "multiply") {
     newCalculation.answer = firstNumber * secondNumber;
-  } else if (newCalculation.recentOperation === "divide") {
+  } else if (newCalculation.operation === "divide") {
     newCalculation.answer = firstNumber / secondNumber;
   }
   console.log(newCalculation);
