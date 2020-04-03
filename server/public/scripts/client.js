@@ -20,6 +20,7 @@ function clickAddCalc(event) {
   //need to save this newCalculation to the server
   event.preventDefault();
   console.log("You clicked the = button");
+
   //update the newCalculation object
   const newCalculation = {
     //we have the form values and we still need operation and answer values
@@ -97,6 +98,7 @@ function clickDivisionOperation(event) {
 
 function render(calcHistory) {
   console.log("Render calcHistory");
+
   $(".div-calc-history").empty();
   for (let i = 0; i < calcHistory.length; i++) {
     const calculationObject = calcHistory[i];
@@ -104,5 +106,6 @@ function render(calcHistory) {
     $(".div-calc-history").append(`
       <li>${calculationObject.firstNumber} ${calculationObject.operation} ${calculationObject.secondNumber} = ${calculationObject.answer} </li>
     `);
+    $(".answer-span").append(`${calculationObject.answer}`);
   }
 }
