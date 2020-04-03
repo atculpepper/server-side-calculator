@@ -35,16 +35,30 @@ app.post("/calculation", (req, res) => {
     operation: req.body.operation,
     secondNumber: parseFloat(req.body.secondNumber)
   };
+
   //calculate answer within the server side post
 
+  //the below if else statement is in reference to the newCalculation object, so the properties need to consistently refer back to the newCalculation object
+
   if (newCalculation.operation === "add") {
-    newCalculation.answer = firstNumber + secondNumber;
+    newCalculation.operation = "+";
+    newCalculation.answer =
+      newCalculation.firstNumber + newCalculation.secondNumber;
   } else if (newCalculation.operation === "subtract") {
-    newCalculation.answer = firstNumber - secondNumber;
+    newCalculation.operation = "-";
+
+    newCalculation.answer =
+      newCalculation.firstNumber - newCalculation.secondNumber;
   } else if (newCalculation.operation === "multiply") {
-    newCalculation.answer = firstNumber * secondNumber;
+    newCalculation.operation = "*";
+
+    newCalculation.answer =
+      newCalculation.firstNumber * newCalculation.secondNumber;
   } else if (newCalculation.operation === "divide") {
-    newCalculation.answer = firstNumber / secondNumber;
+    newCalculation.operation = "/";
+
+    newCalculation.answer =
+      newCalculation.firstNumber / newCalculation.secondNumber;
   }
   console.log(newCalculation);
 
